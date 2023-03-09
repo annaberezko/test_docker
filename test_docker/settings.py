@@ -13,12 +13,14 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from decouple import config
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--pqp&rx3*4t3vs-izf_6bdp8m+y7qkyj-4n&$d95p-snia+$#9')
+SECRET_KEY = config('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True')
+DEBUG = config('DEBUG', 'True')
 
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 ALLOWED_HOSTS = ['*']
