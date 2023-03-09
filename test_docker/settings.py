@@ -15,10 +15,10 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--pqp&rx3*4t3vs-izf_6bdp8m+y7qkyj-4n&$d95p-snia+$#9')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = os.environ.get('DEBUG', 'True')
 
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 ALLOWED_HOSTS = ['*']
@@ -77,27 +77,27 @@ WSGI_APPLICATION = 'test_docker.wsgi.application'
 #     'default': os.environ.get.db()
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('POSTGRES_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.environ.get('POSTGRES_DB', 'hello_django_dev'),
-        'USER': os.environ.get('POSTGRES_USER', 'hello_django'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'hello_django'),
-        'HOST': os.environ.get('POSTGRES_HOST', 'db'),
-        'PORT': os.environ.get('POSTGRES_PORT', '5432')
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': os.environ.get('POSTGRES_ENGINE'),
-#         'NAME': os.environ.get('POSTGRES_DB'),
-#         'USER': os.environ.get('POSTGRES_USER'),
-#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-#         'HOST': os.environ.get('POSTGRES_HOST'),
-#         'PORT': os.environ.get('POSTGRES_PORT'),
+#         'ENGINE': os.environ.get('POSTGRES_ENGINE', 'django.db.backends.postgresql'),
+#         'NAME': os.environ.get('POSTGRES_DB', 'hello_django_dev'),
+#         'USER': os.environ.get('POSTGRES_USER', 'hello_django'),
+#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'hello_django'),
+#         'HOST': os.environ.get('POSTGRES_HOST', '127.0.0.1'),
+#         'PORT': os.environ.get('POSTGRES_PORT', '5432')
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test-docker',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': '127.0.0.1',
+        'PORT': 5432,
+    }
+}
 
 # POSTGRES_DB='test-docker'
 # POSTGRES_USER='postgres'
