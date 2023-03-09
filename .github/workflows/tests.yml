@@ -12,9 +12,9 @@ jobs:
       postgres:
         image: postgres:10.8
         env:
-          POSTGRES_USER=hello_django
-          POSTGRES_PASSWORD=hello_django
-          POSTGRES_DB=hello_django_dev
+          POSTGRES_USER: hello_django
+          POSTGRES_PASSWORD: hello_django
+          POSTGRES_DB: ello_django_dev
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
