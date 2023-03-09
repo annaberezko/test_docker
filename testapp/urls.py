@@ -4,4 +4,4 @@ from testapp.views import BooksListView
 
 urlpatterns = [
     path('', BooksListView.as_view(), name='books-list'),
-    ]
+]

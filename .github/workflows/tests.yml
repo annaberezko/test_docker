@@ -34,9 +34,9 @@ jobs:
           run: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
-        - name: Setup flake8 annotations
-          uses: rbialon/flake8-annotations@v1
-        - name: Lint with flake8
+        - name: Setup .flake8 annotations
+          uses: rbialon/.flake8-annotations@v1
+        - name: Lint with .flake8
           run: |
             cat .env.test > .env
             pip install flake8==5.0.4
