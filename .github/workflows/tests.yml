@@ -14,11 +14,11 @@ jobs:
 
     services:
       postgres:
-        image: postgres:10.8
+        image: postgres:12-alpine
         env:
-          POSTGRES_USER: hello_django
-          POSTGRES_PASSWORD: hello_django
-          POSTGRES_DB: ello_django_dev
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
@@ -51,7 +51,7 @@ jobs:
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --ignore=static --ignore=templates  --exclude=env,migrations
 
-#      - name: Run Tests
-#        run: |
-#          python manage.py migrate
-#          python manage.py test
+      - name: Run Tests
+        run: |
+          python manage.py migrate
+          python manage.py test
