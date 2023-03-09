@@ -76,22 +76,22 @@ WSGI_APPLICATION = 'test_docker.wsgi.application'
 #     'default': config.db()
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('POSTGRES_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': config('POSTGRES_DB', ''),
-        'USER': config('POSTGRES_USER', ''),
-        'PASSWORD': config('POSTGRES_PASSWORD', ''),
-        'HOST': config('POSTGRES_HOST', 'db'),
-        'PORT': config('POSTGRES_PORT', 5432)
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': config('POSTGRES_ENGINE', 'django.db.backends.postgresql'),
+#         'NAME': config('POSTGRES_DB', ''),
+#         'USER': config('POSTGRES_USER', ''),
+#         'PASSWORD': config('POSTGRES_PASSWORD', ''),
+#         'HOST': config('POSTGRES_HOST', 'db'),
+#         'PORT': config('POSTGRES_PORT', 5432)
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
