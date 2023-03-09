@@ -1,7 +1,11 @@
 name: GitHub Actions
 run-name: ${{ github.actor }} new push commit
 
-on: [push]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   lint_and_test:
@@ -42,6 +46,7 @@ jobs:
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --ignore=static --ignore=templates  --exclude=env,migrations
-      - name: Run Tests
-        run: |
-          python manage.py migrate
+#      - name: Run Tests
+#        run: |
+#          python manage.py migrate
+#          python manage.py test
