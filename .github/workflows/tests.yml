@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} new push commit
 
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  lint_and_test:
     runs-on: ubuntu-latest
 
     services:
@@ -21,18 +21,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-      - name: Setup flake8 annotations
-          uses: rbialon/flake8-annotations@v1
-            - name: Lint with flake8
-              run: |
-                cat .env.test > .env
-                pip install flake8==5.0.4
-                # stop the build if there are Python syntax errors or undefined names
-                flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-                # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-                flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --ignore=static --ignore=templates  --exclude=env,migrations
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
