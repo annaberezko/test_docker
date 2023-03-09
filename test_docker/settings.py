@@ -22,7 +22,7 @@ SECRET_KEY = config('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', 'True')
 
-# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(" ")
 ALLOWED_HOSTS = ['*']
 
 
@@ -70,47 +70,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'test_docker.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 # DATABASES = {
-#     'default': os.environ.get.db()
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': os.environ.get('POSTGRES_ENGINE', 'django.db.backends.postgresql'),
-#         'NAME': os.environ.get('POSTGRES_DB', 'hello_django_dev'),
-#         'USER': os.environ.get('POSTGRES_USER', 'hello_django'),
-#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'hello_django'),
-#         'HOST': os.environ.get('POSTGRES_HOST', '127.0.0.1'),
-#         'PORT': os.environ.get('POSTGRES_PORT', '5432')
-#     }
+#     'default': config.db()
 # }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test-docker',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': 5432,
+        'ENGINE': config('POSTGRES_ENGINE', 'django.db.backends.postgresql'),
+        'NAME': config('POSTGRES_DB', ''),
+        'USER': config('POSTGRES_USER', ''),
+        'PASSWORD': config('POSTGRES_PASSWORD', ''),
+        'HOST': config('POSTGRES_HOST', ''),
+        'PORT': config('POSTGRES_PORT', 5432)
     }
 }
-
-# POSTGRES_DB='test-docker'
-# POSTGRES_USER='postgres'
-# POSTGRES_PASSWORD='admin'
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
