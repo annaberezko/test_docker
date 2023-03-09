@@ -5,6 +5,7 @@ on:
     branches:
       - master
   workflow_call:
+  push:
 
 jobs:
   lint_and_test:
