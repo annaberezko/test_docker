@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': config('POSTGRES_DB', 'hello_django_dev'),
         'USER': config('POSTGRES_USER', 'hello_django'),
         'PASSWORD': config('POSTGRES_PASSWORD', 'hello_django'),
-        'HOST': config('POSTGRES_HOST', 'db'),
+        'HOST': config('POSTGRES_HOST', '127.0.0.1'),
         'PORT': config('POSTGRES_PORT', 5432)
     }
 }
