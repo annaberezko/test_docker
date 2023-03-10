@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'test_docker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': config('POSTGRES_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': config('POSTGRES_DB', ''),
-        'USER': config('POSTGRES_USER', ''),
-        'PASSWORD': config('POSTGRES_PASSWORD', ''),
+        'NAME': config('POSTGRES_DB', 'hello_django_dev'),
+        'USER': config('POSTGRES_USER', 'hello_django'),
+        'PASSWORD': config('POSTGRES_PASSWORD', 'hello_django'),
         'HOST': config('POSTGRES_HOST', 'db'),
         'PORT': config('POSTGRES_PORT', 5432)
     }
