@@ -28,3 +28,10 @@ docker-compose exec web python manage.py createsuperuser
 ```
 docker-compose down
 ```
+
+####
+```
+sudo apt-get update
+sudo apt-get install docker.io
+sudo apt install docker-compose
+```
