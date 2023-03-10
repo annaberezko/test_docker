@@ -16,8 +16,8 @@ jobs:
       postgres:
         image: postgres:12-alpine
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: hello_django
+          POSTGRES_PASSWORD: hello_django
           POSTGRES_DB: github_actions
         ports:
           - 5432:5432
