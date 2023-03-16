@@ -43,28 +43,28 @@ jobs:
           cache-from: type=registry,ref=ghcr.io/annaberezko/test_docker/back:buildcache
           cache-to: type=registry,ref=ghcr.io/annaberezko/test_docker/back:buildcache,mode=max
 
-#  deploy:
-##    needs: [build-backend]
-#    runs-on: ubuntu-latest
-#    env:
-#      HOST: ${{ secrets.DEV_HOST }}
-#
-#    steps:
-##      - name: Change HOST if main
-##        if: github.ref == 'refs/heads/main'
-##        run: echo "HOST=${{ secrets.PROD_HOST }}" >> $GITHUB_ENV
-#
-#      - name: deploy command
-#        uses: appleboy/ssh-action@master
-#        with:
-#          # ec2-3-239-231-173.compute-1.amazonaws.com
-#          host: ${{ secrets.DEV_HOST }}
-#          # ubuntu
-#          username: ${{ secrets.DEV_USERNAME }}
-#          key: ${{ secrets.DEV_KEY }}
-#          script: |
-#            sudo ls -la
-##            sudo docker pull ghcr.io/${{ github.actor }}/test_docker:${{ github.head_ref || github.ref_name }}
-##            sudo docker-compose down
-##            sudo docker-compose up -d
-##            sudo docker system prune -a -f
+  deploy:
+#    needs: [build-backend]
+    runs-on: ubuntu-latest
+    env:
+      HOST: ${{ secrets.DEV_HOST }}
+
+    steps:
+#      - name: Change HOST if main
+#        if: github.ref == 'refs/heads/main'
+#        run: echo "HOST=${{ secrets.PROD_HOST }}" >> $GITHUB_ENV
+
+      - name: deploy command
+        uses: appleboy/ssh-action@master
+        with:
+          # ec2-3-239-231-173.compute-1.amazonaws.com
+          host: ${{ secrets.DEV_HOST }}
+          # ubuntu
+          username: ${{ secrets.DEV_USERNAME }}
+          key: ${{ secrets.DEV_KEY }}
+          script: |
+            sudo ls -la
+#            sudo docker pull ghcr.io/${{ github.actor }}/test_docker:${{ github.head_ref || github.ref_name }}
+#            sudo docker-compose down
+#            sudo docker-compose up -d
+#            sudo docker system prune -a -f
