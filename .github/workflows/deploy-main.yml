@@ -30,12 +30,12 @@ jobs:
         with:
           context: .
           push: true
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
+#          secrets: |
+#            GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
           tags: ghcr.io/${{ github.actor }}/backend:${{ github.head_ref || github.ref_name }}
-          file: Dockerfile
-          cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache
-          cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache,mode=max
+#          file: Dockerfile
+#          cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache
+#          cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache,mode=max
 
   deploy:
 #    needs: [build-backend]
