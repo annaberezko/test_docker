@@ -35,12 +35,10 @@ jobs:
           push: true
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
-          tags: ${{ github.actor }}/app:latest
-
-#          tags: ghcr.io/${{ github.actor }}/backend:${{ github.head_ref || github.ref_name }}
-#          file: Dockerfile
-#          cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache
-#          cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache,mode=max
+          tags: ghcr.io/${{ github.actor }}/test_docker:${{ github.head_ref || github.ref_name }}
+          file: Dockerfile
+          cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/test_docker:buildcache
+          cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/test_docker:buildcache,mode=max
 
   deploy:
 #    needs: [build-backend]
@@ -63,7 +61,7 @@ jobs:
           key: ${{ secrets.DEV_KEY }}
           script: |
             sudo ls -la
-#            sudo docker pull ghcr.io/rion-energie/platform/backend:${{ github.head_ref || github.ref_name }}
+#            sudo docker pull ghcr.io/rion-energie/platform/test_docker:${{ github.head_ref || github.ref_name }}
 #            cd platform
 #            sudo docker-compose down
 #            sudo docker-compose up -d
