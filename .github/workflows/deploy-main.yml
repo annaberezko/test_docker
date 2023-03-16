@@ -24,15 +24,16 @@ jobs:
           registry: ghcr.io
           username: "annaberezko"
           password: ${{ secrets.CR_PAT }}
+
       - name: build and push
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: ghcr.io/rion-energie/backend:${{ github.head_ref || github.ref_name }}
+          tags: ghcr.io/${{ github.actor }}/backend:${{ github.head_ref || github.ref_name }}
           file: ./Dockerfile
-          cache-from: type=registry,ref=ghcr.io/rion-energie/backend:buildcache
-          cache-to: type=registry,ref=ghcr.io/rion-energie/backend:buildcache,mode=max
+          cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache
+          cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache,mode=max
 
   deploy:
 #    needs: [build-backend]
