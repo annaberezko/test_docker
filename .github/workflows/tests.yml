@@ -2,10 +2,10 @@ name: GitHub Actions
 run-name: ${{ github.actor }} new push commit
 
 on:
-#  push:
-#    branches: [ master ]
-#  pull_request:
-#    branches: [ master ]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
   workflow_call:
 
 jobs:
