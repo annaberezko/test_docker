@@ -26,19 +26,20 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: build and push
-#        run: |
-#          IMAGE_ID=ghcr.io/${{ github.actor }}/backend:${{ github.run_id }}
-#          docker push $IMAGE_ID
+
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
-          tags: ghcr.io/${{ github.actor }}/test_docker:${{ github.head_ref || github.ref_name }}
-          file: Dockerfile
-          cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/test_docker:buildcache
-          cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/test_docker:buildcache,mode=max
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.actor }}/test_docker:${{ github.run_id }}
+          docker push $IMAGE_ID
+#          tags: ghcr.io/${{ github.actor }}/test_docker:${{ github.head_ref || github.ref_name }}
+#          file: Dockerfile
+#          cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/test_docker:buildcache
+#          cache-to: type=registry,ref=ghcr.io/${{ github.actor }}/test_docker:buildcache,mode=max
 
   deploy:
 #    needs: [build-backend]
