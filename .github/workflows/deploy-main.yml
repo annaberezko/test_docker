@@ -4,9 +4,11 @@ on:
     branches: [ master ]
 
 jobs:
+  tests:
+    uses: ./.github/workflows/tests.yml
 
   build-backend:
-#    needs: [ tests ]
+    needs: [ tests ]
     runs-on: ubuntu-latest
 
     steps:
@@ -28,7 +30,7 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/rion-energie/backend:${{ github.head_ref || github.ref_name }}
-          file: Dockerfile
+          file: ./Dockerfile
           cache-from: type=registry,ref=ghcr.io/rion-energie/backend:buildcache
           cache-to: type=registry,ref=ghcr.io/rion-energie/backend:buildcache,mode=max
 
@@ -46,7 +48,7 @@ jobs:
       - name: deploy command
         uses: appleboy/ssh-action@master
         with:
-          host: env.HOST
+          host: ${{ secrets.DEV_HOST }}
           username: ${{ secrets.DEV_USERNAME }}
           key: ${{ secrets.DEV_KEY }}
           script: |
