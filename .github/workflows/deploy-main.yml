@@ -9,7 +9,7 @@ jobs:
 
 # github container registry
   build-backend:
-#    needs: [ tests ]
+    needs: [ tests ]
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +44,7 @@ jobs:
           cache-to: type=registry,ref=ghcr.io/annaberezko/test_docker/backend:buildcache,mode=max
 
   deploy:
-#    needs: [build-backend]
+    needs: [build-backend]
     runs-on: ubuntu-latest
     env:
       HOST: ${{ secrets.DEV_HOST }}
