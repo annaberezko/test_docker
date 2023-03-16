@@ -32,9 +32,6 @@ jobs:
       - name: build and push
 
         uses: docker/build-push-action@v3
-        permissions:
-          contents: read
-          packages: write
         with:
           context: .
           push: true
