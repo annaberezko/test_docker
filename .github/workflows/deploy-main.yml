@@ -56,7 +56,9 @@ jobs:
       - name: deploy command
         uses: appleboy/ssh-action@master
         with:
+          # ec2-3-239-231-173.compute-1.amazonaws.com
           host: ${{ secrets.DEV_HOST }}
+          # ubuntu
           username: ${{ secrets.DEV_USERNAME }}
           key: ${{ secrets.DEV_KEY }}
           script: |
