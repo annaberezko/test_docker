@@ -38,10 +38,10 @@ jobs:
 #        run: |
 #          IMAGE_ID=ghcr.io/${{ github.actor }}/test_docker:${{ github.run_id }}
 #          docker push $IMAGE_ID
-          tags: ghcr.io/annaberezko/test_docker/back:latest
+          tags: ghcr.io/{{ github.actor }}/test_docker/backend:latest
           file: Dockerfile
-          cache-from: type=registry,ref=ghcr.io/annaberezko/test_docker/back:buildcache
-          cache-to: type=registry,ref=ghcr.io/annaberezko/test_docker/back:buildcache,mode=max
+          cache-from: type=registry,ref=ghcr.io/{{ github.actor }}/test_docker/backend:buildcache
+          cache-to: type=registry,ref=ghcr.io/{{ github.actor }}/test_docker/backend:buildcache,mode=max
 
   deploy:
 #    needs: [build-backend]
@@ -63,7 +63,7 @@ jobs:
           username: ${{ secrets.DEV_USERNAME }}
           key: ${{ secrets.DEV_KEY }}
           script: |
-            sudo ls -la
+            sudo ls
 #            sudo docker pull ghcr.io/${{ github.actor }}/test_docker:${{ github.head_ref || github.ref_name }}
 #            sudo docker-compose down
 #            sudo docker-compose up -d
