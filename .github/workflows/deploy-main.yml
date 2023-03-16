@@ -30,7 +30,7 @@ jobs:
 #        with:
 #          driver: docker
 #          install: true
-      -
+
       - name: build and push
 
         uses: docker/build-push-action@v3
