@@ -28,7 +28,7 @@ jobs:
         uses: docker/login-action@v1.3.0
         with:
           registry: ghcr.io
-          username: annaberezko
+          username: annaberezko-token
           password: ${{ secrets.CR_PAT }}
 
       - name: build and push
