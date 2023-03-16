@@ -50,9 +50,6 @@ jobs:
       HOST: ${{ secrets.DEV_HOST }}
 
     steps:
-#      - name: Change HOST if main
-#        if: github.ref == 'refs/heads/main'
-#        run: echo "HOST=${{ secrets.PROD_HOST }}" >> $GITHUB_ENV
 
       - name: deploy command
         uses: appleboy/ssh-action@master
