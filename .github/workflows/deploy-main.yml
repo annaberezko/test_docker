@@ -64,7 +64,7 @@ jobs:
           key: ${{ secrets.DEV_KEY }}
           script: |
             sudo ls
-            sudo docker pull ghcr.io/annaberezko/test_docker/backend:${{ github.head_ref || github.ref_name }}
+            sudo docker pull ghcr.io/annaberezko/test_docker/backend:latest
             sudo docker-compose down
             sudo docker-compose up -d
             sudo docker system prune -a -f
