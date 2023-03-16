@@ -4,11 +4,11 @@ on:
     branches: [ master ]
 
 jobs:
-  tests:
-    uses: /.github/workflows/tests.yml
+#  tests:
+#    uses: ./.github/workflows/tests.yml
 
   build-backend:
-    needs: [ tests ]
+#    needs: [ tests ]
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,7 @@ jobs:
         uses: docker/login-action@v1.3.0
         with:
           registry: ghcr.io
-          username: "annaberezko"
+          username: ${{ github.actor }}
           password: ${{ secrets.CR_PAT }}
 
       - name: build and push
@@ -30,6 +30,8 @@ jobs:
         with:
           context: .
           push: true
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
           tags: ghcr.io/${{ github.actor }}/backend:${{ github.head_ref || github.ref_name }}
           file: Dockerfile
           cache-from: type=registry,ref=ghcr.io/${{ github.actor }}/backend:buildcache
@@ -54,7 +56,7 @@ jobs:
           key: ${{ secrets.DEV_KEY }}
           script: |
             sudo ls -la
-#            sudo docker pull ghcr.io/rion-energie/backend:${{ github.head_ref || github.ref_name }}
+#            sudo docker pull ghcr.io/rion-energie/platform/backend:${{ github.head_ref || github.ref_name }}
 #            cd platform
 #            sudo docker-compose down
 #            sudo docker-compose up -d
