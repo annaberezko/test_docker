@@ -2,8 +2,8 @@ name: Deploy
 on:
   push:
     branches: [ master ]
-  paths:
-    - ./data_pipelines/dataeng_github_metrics/*
+    paths:
+      - ./data_pipelines/dataeng_github_metrics/*
 jobs:
 #  tests:
 #    uses: ./.github/workflows/tests.yml
