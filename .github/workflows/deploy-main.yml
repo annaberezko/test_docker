@@ -38,7 +38,7 @@ jobs:
 #        run: |
 #          IMAGE_ID=ghcr.io/${{ github.actor }}/test_docker:${{ github.run_id }}
 #          docker push $IMAGE_ID
-          tags: ghcr.io/annaberezko/test_docker/back:${{ github.head_ref || github.ref_name }}
+          tags: ghcr.io/annaberezko/test_docker/back:latest
           file: Dockerfile
           cache-from: type=registry,ref=ghcr.io/annaberezko/test_docker/back:buildcache
           cache-to: type=registry,ref=ghcr.io/annaberezko/test_docker/back:buildcache,mode=max
