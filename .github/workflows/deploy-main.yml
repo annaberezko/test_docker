@@ -26,11 +26,15 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          tags: ${{ github.actor }}/app:latest
+        run: | 
+          IMAGE_ID=ghcr.io/${{ github.actor }}/backend:${{ github.run_id }}
+          docker push $IMAGE_ID
+#        uses: docker/build-push-action@v3
+#        with:
+#          context: .
+#          push: true
+#          tags: ${{ github.actor }}/app:latest
+
 #          secrets: |
 #            GIT_AUTH_TOKEN=${{ secrets.CR_PAT }}
 #          tags: ghcr.io/${{ github.actor }}/backend:${{ github.head_ref || github.ref_name }}
