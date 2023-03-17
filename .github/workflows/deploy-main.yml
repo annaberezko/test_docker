@@ -58,7 +58,6 @@ jobs:
           username: ${{ secrets.DEV_USERNAME }}
           key: ${{ secrets.DEV_KEY }}
           script: |
-#            cd test_docker
             sudo ls -la
             sudo docker pull ghcr.io/annaberezko/test_docker/backend:${{ github.head_ref || github.ref_name }}
             sudo docker-compose down
