@@ -2,6 +2,7 @@ version: "3.3"
 
 services:
   web:
+#    image: ghcr.io/annaberezko/test_docker/backend:buildcache
     build: ./
     command: >
       sh -c "python manage.py migrate &&
