@@ -35,7 +35,7 @@ jobs:
           push: true
           tags: ghcr.io/annaberezko/test_docker/backend:latest
           file: Dockerfile
-          cache-from: type=registry,ref=ghcr.io/annaberezko/test_docker/backend:buildcache
+          cache-from: type=registry,ref=ghcr.io/annaberezko/test_docker/backend:${{ github.head_ref || github.ref_name }}
           cache-to: type=registry,ref=ghcr.io/annaberezko/test_docker/backend:buildcache,mode=max
 
   deploy:
@@ -58,8 +58,9 @@ jobs:
           username: ${{ secrets.DEV_USERNAME }}
           key: ${{ secrets.DEV_KEY }}
           script: |
+            cd test_docker
             sudo ls -la
-            sudo docker pull ghcr.io/annaberezko/test_docker/backend:latest
+            sudo docker pull ghcr.io/annaberezko/test_docker/backend:${{ github.head_ref || github.ref_name }}
             sudo docker-compose down
             sudo docker-compose up -d
             sudo docker system prune -a -f
