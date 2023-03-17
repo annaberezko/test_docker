@@ -33,9 +33,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/annaberezko/test_docker/backend:latest
+          tags: ghcr.io/annaberezko/test_docker/backend:${{ github.head_ref || github.ref_name }}
           file: Dockerfile
-          cache-from: type=registry,ref=ghcr.io/annaberezko/test_docker/backend:${{ github.head_ref || github.ref_name }}
+          cache-from: type=registry,ref=ghcr.io/annaberezko/test_docker/backend:buildcache
           cache-to: type=registry,ref=ghcr.io/annaberezko/test_docker/backend:buildcache,mode=max
 
   deploy:
