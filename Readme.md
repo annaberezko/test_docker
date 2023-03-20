@@ -35,3 +35,19 @@ sudo apt-get update
 sudo apt-get install docker.io
 sudo apt install docker-compose
 ```
+Celery installation:
+```
+pip install celery
+pip install redis
+```
+Build redis docker image and run it 
+```
+docker run -d -p 6379:6379 redis
+python manage.py runserver
+```
+Celery command for build worker and show logs
+(Run it in the same directory with manage.py file)
+```
+celery -A project_name worker -l info
+celery -A project_name beat -l info
+```
