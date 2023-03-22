@@ -48,6 +48,11 @@ python manage.py runserver
 Celery command for build worker and show logs
 (Run it in the same directory with manage.py file)
 ```
-celery -A project_name worker -l info
-celery -A project_name beat -l info
+celery -A <celery_app_module_name> worker -l info
+celery -A <celery_app_module_name> beat -l info
+```
+Windows
+``` 
+pip install eventlet
+celery -A <celery_app_module_name> worker -l info -P eventlet
 ```

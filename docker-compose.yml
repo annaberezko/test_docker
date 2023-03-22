@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   web:
-#    image: ghcr.io/annaberezko/test_docker/backend:master
+    image: ghcr.io/annaberezko/test_docker/backend:master
     build: ./
     command: >
       sh -c "python manage.py migrate &&
@@ -22,6 +22,25 @@ services:
       - django_postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
+
+  redis:
+    image: redis
+    restart: always
+
+  celery:
+    image: ghcr.io/annaberezko/test_docker/backend:master
+    command: celery -A test_docker worker -l info
+    restart: unless-stopped
+    depends_on:
+      - redis
+
+  celerybeat:
+    image: ghcr.io/annaberezko/test_docker/backend:master
+    command: celery -A test_docker beat -l info
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - celery
 
 # save data
 volumes:
