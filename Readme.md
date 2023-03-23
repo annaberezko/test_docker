@@ -51,8 +51,8 @@ Celery command for build worker and show logs
 celery -A <celery_app_module_name> worker -l info
 celery -A <celery_app_module_name> beat -l info
 ```
-Windows
-``` 
-pip install eventlet
-celery -A <celery_app_module_name> worker -l info -P eventlet
+
+AWS before deploy
+```
+sudo apt-get install redis-server
 ```
