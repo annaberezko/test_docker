@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   web:
-    image: ghcr.io/annaberezko/test_docker/backend:master
+    image: ghcr.io/annaberezko/test_docker/backend:celery
     build: ./
     command: >
       sh -c "python manage.py migrate &&
@@ -26,16 +26,18 @@ services:
   redis:
     image: redis
     restart: always
+    ports:
+      - "6379:6379"
 
   celery:
-    image: ghcr.io/annaberezko/test_docker/backend:master
+    image: ghcr.io/annaberezko/test_docker/backend:celery
     command: celery -A test_docker worker -l info
     restart: unless-stopped
     depends_on:
       - redis
 
   celerybeat:
-    image: ghcr.io/annaberezko/test_docker/backend:master
+    image: ghcr.io/annaberezko/test_docker/backend:celery
     command: celery -A test_docker beat -l info
     restart: unless-stopped
     depends_on:
