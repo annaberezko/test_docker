@@ -1,3 +1,3 @@
-# from test_docker.celery import app as celery_app
-#
-# __all__ = ('celery_app', )
+from test_docker.celery import app as celery_app
+
+__all__ = ('celery_app', )
