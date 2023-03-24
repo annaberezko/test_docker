@@ -11,5 +11,5 @@ class BooksListView(ListView):
 
     def get_queryset(self):
         print("Hello, queryset")
-        temp = add.delay(1, 2)
+        add.delay(1, 2)
         return Book.objects.all()
