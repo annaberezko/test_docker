@@ -32,7 +32,7 @@ services:
 
   flower:
     image: ghcr.io/annaberezko/test_docker/backend:celery
-    command: celery flower --port=5566
+    command: celery flower --port=5555
     restart: always
     depends_on:
       - redis
