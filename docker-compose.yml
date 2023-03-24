@@ -29,6 +29,13 @@ services:
     ports:
       - "6379:6379"
 
+  flower:
+    image: ghcr.io/annaberezko/test_docker/backend:celery
+    command: celery flower --port=5566
+    restart: always
+    depends_on:
+      - redis
+
   celery:
     image: ghcr.io/annaberezko/test_docker/backend:celery
     command: celery -A test_docker worker -l info
