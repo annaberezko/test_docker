@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+  celery:
+    image: ghcr.io/annaberezko/test_docker/backend:latest
+    command: celery -A test_docker worker -l info
+    restart: unless-stopped
+    depends_on:
+      - redis

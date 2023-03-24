@@ -2,11 +2,12 @@ version: "3.3"
 
 services:
   web:
-#    image: ghcr.io/annaberezko/test_docker/backend:buildcache
+    image: ghcr.io/annaberezko/test_docker/backend:master
     build: ./
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:80"
+             python manage.py runserver 0.0.0.0:80 && 
+             source create_superuser_prod.sh"
     volumes:
       - .:/usr/src/app/
     ports:
@@ -22,6 +23,34 @@ services:
       - django_postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  flower:
+    image: ghcr.io/annaberezko/test_docker/backend:master
+    command: celery flower --port=5555
+    restart: always
+    depends_on:
+      - redis
+
+  celery:
+    image: ghcr.io/annaberezko/test_docker/backend:master
+    command: celery -A test_docker worker -l info
+    restart: unless-stopped
+    depends_on:
+      - redis
+
+  celerybeat:
+    image: ghcr.io/annaberezko/test_docker/backend:master
+    command: celery -A test_docker beat -l info
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - celery
 
 # save data
 volumes:
