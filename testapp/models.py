@@ -31,11 +31,11 @@ class Customer(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     date_ordered = models.DateField()
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    # total_price = models.DecimalField(max_digits=10, decimal_places=2)
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_item')
     product_name = models.CharField(max_length=100)
     quantity = models.IntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -48,4 +48,4 @@ class Country(models.Model):
 class City(models.Model):
     name = models.CharField(max_length=100)
     population = models.IntegerField()
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='cities')
