@@ -6,7 +6,8 @@ services:
     build: ./
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:80"
+             python manage.py runserver 0.0.0.0:80 && 
+             source create_superuser_prod.sh"
     volumes:
       - .:/usr/src/app/
     ports:
