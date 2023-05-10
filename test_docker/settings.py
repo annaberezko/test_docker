@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import sentry_sdk
 from decouple import config
+from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'rest_framework',
     'testapp'
 ]
 
@@ -142,6 +145,15 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     'http://127.0.0.1:8000',
 #     'http://127.0.0.1'
 # ]
+
+sentry_sdk.init(
+    dsn=config('DSN_KEY', default=''),
+    integrations=[
+        DjangoIntegration(),
+    ],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
 
 # REDIS_LOCAL_HOST = '127.0.0.1'
 REDIS_HOST = 'redis'
