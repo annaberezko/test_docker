@@ -76,12 +76,12 @@ class CountriesListView(TestCase):
         self.country2 = Country.objects.create(name="Poland")
 
         City.objects.create(name="Dnipro", population=5, country=self.country1)
-        City.objects.create(name="Kyiv", population=8, country=self.country1)
+        City.objects.create(name="Wroclaw", population=8, country=self.country1)
         City.objects.create(name="Odessa", population=7, country=self.country1)
 
         City.objects.create(name="Warsaw", population=7, country=self.country2)
         City.objects.create(name="Krakow", population=6, country=self.country2)
-        City.objects.create(name="Wroclaw", population=6, country=self.country2)
+        City.objects.create(name="Kyiv", population=6, country=self.country2)
 
     def test_countries_list(self):
         response = self.client.get(reverse('countries-list'))
